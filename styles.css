@@ -159,7 +159,7 @@ button:hover, .settings-link:hover {
 /* ライブストリームコンテナ */
 #live-streams-container {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
     gap: 30px;
 }
 
@@ -576,6 +576,10 @@ button:hover, .settings-link:hover {
 }
 
 @media (max-width: 768px) {
+    #live-streams-container {
+        grid-template-columns: 1fr;
+    }
+    
     .header-content {
         flex-direction: column;
         gap: 15px;
@@ -899,6 +903,10 @@ input:checked + .slider:before {
 }
 
 @media (max-width: 768px) {
+    #live-streams-container {
+        grid-template-columns: 1fr;
+    }
+    
     .header-content {
         flex-direction: column;
         gap: 15px;
@@ -1338,6 +1346,10 @@ input:checked + .slider:before {
 }
 
 @media (max-width: 768px) {
+    #live-streams-container {
+        grid-template-columns: 1fr;
+    }
+    
     .header-content {
         flex-direction: column;
         gap: 15px;
