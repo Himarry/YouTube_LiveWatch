@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>設定 - YouTubeライブ同時視聴サイト</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Google Fontsの追加 -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome アイコン -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="page-wrapper">
+        <header class="main-header">
+            <div class="header-content">
+                <div class="logo-area">
+                    <i class="fab fa-youtube"></i>
+                    <h1>YouTubeライブ同時視聴</h1>
+                </div>
+                <div class="header-controls">
+                    <a href="index.html" class="settings-link"><i class="fas fa-home"></i> ホームに戻る</a>
+                </div>
+            </div>
+            <div class="header-bar"></div>
+        </header>
+
+        <main class="main-content">
+            <div class="settings-container">
+                <h2 class="section-title"><i class="fas fa-cog"></i> 監視するYouTubeチャンネルの設定</h2>
+                <p>監視したいYouTubeチャンネルのIDを入力してください。チャンネルIDはYouTubeチャンネルURLの「/channel/」の後ろの部分です。</p>
+                
+                <div class="channel-input-group">
+                    <input type="text" id="channel-id-input" placeholder="チャンネルID（例: UCxxxxxxxxxxxxxxxx）">
+                    <button id="add-channel-btn"><i class="fas fa-plus"></i> 追加</button>
+                </div>
+                
+                <div id="channel-id-status"></div>
+                
+                <div class="channel-list" id="channel-list">
+                    <!-- チャンネルリストがここに動的に追加されます -->
+                </div>
+                
+                <div class="api-key-container">
+                    <h2 class="section-title"><i class="fas fa-key"></i> YouTube API キーの設定</h2>
+                    <p>YouTube Data API v3のAPIキーを入力してください。</p>
+                    <div class="channel-input-group">
+                        <input type="text" id="api-key-input" placeholder="YouTube API キー">
+                        <button id="save-api-key-btn"><i class="fas fa-save"></i> 保存</button>
+                    </div>
+                    <div id="api-key-status"></div>
+                </div>
+            </div>
+        </main>
+
+        <footer class="main-footer">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <p><i class="fas fa-info-circle"></i> チャンネルIDとAPIキーを設定してください</p>
+                </div>
+                <div class="footer-links">
+                    <a href="index.html">ホームに戻る</a>
+                    <a href="#" id="about-link">このサイトについて</a>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 YouTubeライブ同時視聴サイト</p>
+            </div>
+        </footer>
+    </div>
+
+    <div id="about-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>このサイトについて</h2>
+            <p>YouTubeライブ同時視聴サイトは、複数のYouTubeチャンネルのライブ配信を一度に視聴できるサービスです。</p>
+            <p>お気に入りのチャンネルを設定して、ライブ配信を自動的にチェックします。</p>
+        </div>
+    </div>
+
+    <script src="api.js"></script>
+    <script src="settings.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

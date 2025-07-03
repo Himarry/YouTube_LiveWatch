@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTubeライブ同時視聴サイト</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Google Fontsの追加 -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome アイコン -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="page-wrapper">
+        <header class="main-header">
+            <div class="header-content">
+                <div class="logo-area">
+                    <i class="fab fa-youtube"></i>
+                    <h1>YouTube Live 同時視聴サイト</h1>
+                </div>
+                <div class="header-controls">
+                    <div class="search-container">
+                        <i class="fas fa-search search-icon"></i>
+                        <input type="text" class="search-input" id="stream-search" placeholder="配信を検索...">
+                    </div>
+                    <div class="theme-switch-wrapper">
+                        <label class="theme-switch" for="theme-toggle">
+                            <input type="checkbox" id="theme-toggle" title="ダークモードの切り替え" aria-label="ダークモードの切り替え" />
+                            <div class="slider round">
+                                <i class="fas fa-sun"></i>
+                                <i class="fas fa-moon"></i>
+                            </div>
+                        </label>
+                    </div>
+                    <button id="compact-toggle" title="コンパクトモード切替">
+                        <i class="fas fa-compress"></i>
+                    </button>
+                    <button id="refresh-btn"><i class="fas fa-sync-alt"></i> 更新</button>
+                    <a href="history.html" class="history-link"><i class="fas fa-history"></i> 履歴</a>
+                    <a href="settings.html" class="settings-link"><i class="fas fa-cog"></i> 設定</a>
+                </div>
+            </div>
+            <div class="header-bar"></div>
+        </header>
+
+        <div class="status-container">
+            <div id="status-message"><i class="fas fa-spinner fa-spin"></i> チャンネルを監視中...</div>
+            <!-- 通知ボタンを削除 -->
+        </div>
+        
+        <main class="main-content">
+            <!-- ウェルカムセクション -->
+            <section class="welcome-section" id="welcome-section">
+                <h2>YouTubeライブ配信をまとめて視聴しよう</h2>
+                <p>お気に入りのチャンネルのライブ配信をリアルタイムで確認し、一度に複数の配信を楽しめます。</p>
+                <div class="welcome-stats">
+                    <div class="stat-item">
+                        <span class="stat-number" id="total-channels">0</span>
+                        <span class="stat-label">監視中チャンネル</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" id="total-streams">0</span>
+                        <span class="stat-label">視聴可能配信</span>
+                    </div>
+                    <!-- 同時視聴数の統計を削除 -->
+                </div>
+            </section>
+            
+            <section class="live-section">
+                <div class="section-header">
+                    <h2 class="section-title"><i class="fas fa-broadcast-tower"></i> 現在のライブ配信</h2>
+                    <div class="action-buttons">
+                        <select id="sort-streams" class="select-control" aria-label="配信の並び替え">
+                            <option value="default">デフォルト順</option>
+                            <option value="channel">チャンネル名順</option>
+                            <option value="title">タイトル順</option>
+                            <option value="newest">新しい順</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <!-- クイックフィルター -->
+                <div class="quick-filters" id="quick-filters">
+                    <div class="filter-tab active" data-filter="all">すべて</div>
+                    <div class="filter-tab" data-filter="favorites">お気に入り</div>
+                    <div class="filter-tab" data-filter="new">新着</div>
+                </div>
+                
+                <div id="live-streams-container">
+                    <!-- ライブ配信がここに動的に追加されます -->
+                </div>
+            </section>
+        </main>
+
+        <footer class="main-footer">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <p>
+                        <i class="far fa-clock"></i> 手動更新+自動監視 | 最終更新: <span id="last-updated">-</span>
+                        <span class="auto-update-indicator" title="配信開始・終了を自動監視中"></span>
+                    </p>
+                </div>
+                <div class="footer-links">
+                    <a href="settings.html">設定</a>
+                    <a href="#" id="about-link">このサイトについて</a>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 YouTubeライブ同時視聴サイト</p>
+            </div>
+        </footer>
+    </div>
+
+    <div id="about-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>このサイトについて</h2>
+            <p>YouTubeライブ同時視聴サイトは、複数のYouTubeチャンネルのライブ配信を一度に視聴できるサービスです。</p>
+            <p>お気に入りのチャンネルを設定して、ライブ配信を自動的にチェックします。</p>
+        </div>
+    </div>
+
+    <!-- コメント欄モーダル -->
+    <div id="comments-modal" class="modal">
+        <div class="modal-content comments-modal-content">
+            <div class="modal-header">
+                <h3 id="comments-stream-title">コメント欄</h3>
+                <span class="close-modal comments-close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div id="comments-container">
+                    <!-- YouTubeコメント欄の埋め込みがここに表示されます -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="api.js"></script>
+    <script src="settings.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
